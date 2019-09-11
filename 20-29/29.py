@@ -16,8 +16,6 @@ def get_combinations(n):
         r.append(x)
     return r
 
-
-
 if __name__ == "__main__":
     r = []
     for i in range(MIN, MAX + 1):
