@@ -1,11 +1,9 @@
-import math
-
 def is_rat(a, b, c):
     """
     is right angled triangle
     c = sqrt(a^2 + b^2)
     """
-    return float(c) == float(math.sqrt(((a * a) + (b * b))))
+    return c * c == (a * a) + (b * b)
 
 if __name__ == "__main__":
     p = 120
