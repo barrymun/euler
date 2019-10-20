@@ -43,3 +43,25 @@ def number_of_ways_to_form_coin(coin):
 
 if __name__ == "__main__":
     print number_of_ways_to_form_coin(coin=200)
+
+
+# better method, much faster
+# TODO: solve using dynamic programming method
+#
+# def number_of_ways_to_form_coin():
+#     """
+#     """
+#     count = 0
+#     for two_pound in xrange(201, 0, -200):  # 201 to handle >=, not just > decrement case
+#         for one_pound in xrange(two_pound, 0, -100):
+#             for fifty_p in xrange(one_pound, 0, -50):
+#                 for twenty_p in xrange(fifty_p, 0, -20):
+#                     for ten_p in xrange(twenty_p, 0, -10):
+#                         for five_p in xrange(ten_p, 0, -5):
+#                             for two_p in xrange(five_p, 0, -2):
+#                                 count += 1
+#
+#     return count
+#
+# if __name__ == "__main__":
+#     print number_of_ways_to_form_coin()
