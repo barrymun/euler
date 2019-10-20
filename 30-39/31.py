@@ -1,15 +1,45 @@
-import itertools
+def number_of_ways_to_form_coin(coin):
+    """
+    """
+    count = 0
+    for two_pound in xrange(0, 2):
+        if (two_pound * 200) > coin:
+            break
+        for one_pound in xrange(0, 3):
+            if (one_pound * 100) > coin:
+                break
+            for fifty_p in xrange(0, 5):
+                if (fifty_p * 50) > coin:
+                    break
+                for twenty_p in xrange(0, 11):
+                    if (twenty_p * 20) > coin:
+                        break
+                    for ten_p in xrange(0, 21):
+                        if (ten_p * 10) > coin:
+                            break
+                        for five_p in xrange(0, 41):
+                            if (five_p * 5) > coin:
+                                break
+                            for two_p in xrange(0, 101):
+                                if (two_p * 2) > coin:
+                                    break
+                                for one_p in xrange(0, 201):
 
-COINS = [
-    1,
-    2,
-    5,
-    10,
-    20,
-    50,
-    100,
-    200,
-]
+                                    value = (two_pound * 200) + \
+                                        (one_pound * 100) + \
+                                        (fifty_p * 50) + \
+                                        (twenty_p * 20) + \
+                                        (ten_p * 10) + \
+                                        (five_p * 5) + \
+                                        (two_p * 2) + \
+                                        (one_p * 1)
+
+                                    if value > coin or value < coin:
+                                        continue
+
+                                    count += 1
+
+    return count
 
 if __name__ == "__main__":
-    print list(itertools.permutations(COINS))
+    print number_of_ways_to_form_coin(coin=200)
