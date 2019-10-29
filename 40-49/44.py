@@ -1,36 +1,31 @@
-import sys
+from math import sqrt
 
 def get_pentagonal_number(n):
     """
     """
     return (n * ((3 * n) - 1)) / 2
 
-def generate_pentagonal_numbers(upper_limit):
+def is_pentagonal(n):
     """
+    https://en.wikipedia.org/wiki/Pentagonal_number#Tests_for_pentagonal_numbers
     """
-    p_numbers = []
-    for i in xrange(1, upper_limit):
-        pn = get_pentagonal_number(n=i)
-        p_numbers.append(pn)
-    return p_numbers
+    k = (sqrt(24 * n + 1) + 1) / 6
+    return k.is_integer()
 
 if __name__ == "__main__":
-    l = 3000
-
     r = 0
-    pn = generate_pentagonal_numbers(upper_limit=l)
+    j = 1
 
-    for j in xrange(1, l):
-        if r != 0:
-            break
+    while r == 0:
+        pj = get_pentagonal_number(n=j)
+        j += 1
 
-        for k in xrange(j, l):
-            pj = get_pentagonal_number(n=j)
+        for k in xrange(j, 0, -1):
             pk = get_pentagonal_number(n=k)
             s = pj + pk
             d = abs(pj - pk)
 
-            if s in pn and d in pn:
+            if is_pentagonal(n=s) and is_pentagonal(n=d):
                 r = d
                 break
 
