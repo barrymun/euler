@@ -20,4 +20,14 @@ def isPrime(n):
 
 
 if __name__ == "__main__":
-    pass
+    # start = 10000000
+    # end = 99999999
+    start = 10000
+    end = 99999
+
+    count = 0
+    while start < end:
+        if isPrime(n=start):
+            count += 1
+        start += 1
+    print count
