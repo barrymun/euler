@@ -3,38 +3,38 @@ from __future__ import division
 LIMIT = 90
 
 
-def s(n):
-    """
-    """
-    if n == 0:
-        return 0
-    i = 1
-    while True:
-        if sum([int(x) for x in str(i)]) == n:
-            break
-        # if len(n)
-        i += 1
-    return i
+# def s(n):
+#     """
+#     """
+#     if n == 0:
+#         return 0
+#     i = 1
+#     while True:
+#         if sum([int(x) for x in str(i)]) == n:
+#             break
+#         i += 1
+#     return i
 
 
-def s2(n):
-    """
-    *** much faster
-    """
-    if n < 10:
-        # covering 1 -> 9 inclusive
-        return n
-    r = ""
-    while n > 9:
-        r += "9"
-        n -= 9
-    if n > 0:
-        r = str(n) + r
-    return r
+# def s2(n):
+#     """
+#     *** much faster
+#     """
+#     if n < 10:
+#         # covering 1 -> 9 inclusive
+#         return str(n)
+#     r = ""
+#     while n > 9:
+#         r += "9"
+#         n -= 9
+#     if n > 0:
+#         r = str(n) + r
+#     return r
 
 
 def s3(n):
     """
+    *** much faster v3
     """
 
     lenN = len(str(n))
@@ -44,7 +44,7 @@ def s3(n):
 
     if lenN < 2:
         # covering 1 -> 9 inclusive
-        return n
+        return str(n)
 
     r = ""
     while n > 9:
@@ -57,19 +57,30 @@ def s3(n):
     return r
 
 
-def S(n):
+# def S(n):
+#     """
+#     """
+#     r = 0
+#     while n > 0:
+#         # r += int(s2(n=n))
+#         r += int(s3(n=n))
+#         n -= 1
+#     return r
+
+
+def S2(n, cursor=0, prev=0):
     """
     """
     r = 0
-    while n > 0:
-        # r += int(s2(n=n))
+    while n > cursor:
         r += int(s3(n=n))
         n -= 1
-    return r
+    return r + prev
 
 
 def constructMap():
     """
+    creates the fibonacci sequence of numbers
     """
     i = 2
     m = {
@@ -84,35 +95,36 @@ def constructMap():
 
 if __name__ == "__main__":
     pass
-    # print s(10)
-    # print s(20)
-    # print s(30)
-    # print s(40)
-    # print s(50)
-    # print ""
-    # print s2(10)
-    # print s2(20)
-    # print s2(30)
-    # print s2(40)
-    # print s2(50)
-    # print ""
 
     print ""
-    print s2(10)
+    # print s2(10)
     print s3(10)
-    print S(20)
+    print s3(11)
+    print s3(20)
+    print S2(n=20)
     print ""
+    # raise Exception
 
     m = constructMap()
+    print m
+    # raise Exception
+
     mod = 1000000007
     i = 2
     r = 0
+    prev = 0
+    cursor = 0
     while i <= LIMIT:
+        # print i, r, prev, cursor
         print i, r
-        r += S(n=m[i])
+        prev = S2(n=m[i], cursor=cursor, prev=prev)
+        cursor = m[i]
+        r += prev
         i += 1
-    print "---"
+    print "---r---"
     print r
-    print "---"
-    print r / mod
-    print "---"
+    print "---r%mod---"
+    print r % mod
+    # print "---r/mod---"
+    # print r / mod
+    # print "---"
